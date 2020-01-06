@@ -8,7 +8,7 @@ import study.wyy.guava.eventbus.listener.ExceptionListener;
 /**
  * @author ：wyy
  * @date ：Created in 2019-12-19 21:04
- * @description： 测试event的继承
+ * @description：
  * @modified By：
  * @version: $
  */
@@ -16,7 +16,7 @@ public class ExceptionEventBusExample {
 
 
     /**
-     * 其中监听器中其中一个监听方法出现异常时，不会影响该监听器其他的监听方法的，默认的异常处理就是会打印出异常的对战信息
+     * 其中监听器中其中一个监听方法出现异常时，不会影响该监听器其他的监听方法的，默认的异常处理就是会打印出异常的堆栈信息
      *
      */
     public static void main(String[] args) {

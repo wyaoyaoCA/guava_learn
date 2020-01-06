@@ -21,8 +21,5 @@ public class InheritListenerEventBusExample {
         eventBus.register(new ConcretListener());
         System.out.println("post the string event");
         eventBus.post("I am String event");
-
-
-
     }
 }

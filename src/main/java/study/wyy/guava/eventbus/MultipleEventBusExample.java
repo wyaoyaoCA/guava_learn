@@ -19,8 +19,5 @@ public class MultipleEventBusExample {
         eventBus.post("I am String event");
         System.out.println("post the int event");
         eventBus.post(1000);
-
-
-
     }
 }

@@ -13,8 +13,6 @@ import study.wyy.guava.eventbus.listener.FruitListener;
  * @version: $
  */
 public class InheritEventEventBusExample {
-
-
     public static void main(String[] args) {
         final EventBus eventBus = new EventBus();
         eventBus.register(new FruitListener());
