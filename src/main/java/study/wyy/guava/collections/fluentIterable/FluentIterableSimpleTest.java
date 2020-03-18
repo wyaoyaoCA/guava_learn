@@ -1,5 +1,6 @@
 package study.wyy.guava.collections.fluentIterable;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Lists;
@@ -160,7 +161,52 @@ public class FluentIterableSimpleTest {
         fit.transform(item -> item.length()).forEach(System.out::println);
     }
 
+    /****
+     * 场景：假设会员有两种类型分别为 1 和 2
+     * 根据会员类型查询会员，最后后将查询结果合并
+     */
+    @Test
+    public void testTransformAndConcat(){
+        List<Integer> types = Lists.newArrayList(1, 2);
+        FluentIterable<Member> members = FluentIterable.from(types).transformAndConcat(type -> searchMemberByType(type));
+        members.forEach(System.out::println);
+    }
+    // 模拟查询会员
+    private List<Member> searchMemberByType(Integer type){
+        if(type ==1 ){
+            // 假设会员类型为1 有两个会员 张三李四
+            return Lists.newArrayList(new Member(type,"张三"),new Member(type,"李四"));
+        }else{
+            // 假设会员类型为2 有三个会员 王五 陈六 钱八
+            return Lists.newArrayList(new Member(type,"王五"),new Member(type,"陈六"),new Member(type,"钱八"));
+        }
+    }
+    class Member{
+        // 会员类型
+        Integer type;
+        // 会员名字
+        String name;
 
+        public Member(Integer type, String name) {
+            this.type = type;
+            this.name = name;
+        }
 
+        @Override
+        public String toString() {
+            return "Member{" +
+                    "type=" + type +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+    }
+    @Test
+    public void testJoin(){
+        FluentIterable<String> fit = build();
+        String join = fit.join(Joiner.on(','));
+        System.out.println(join);
+        assertThat(join,equalTo("java,python,php,C#,javaScript"));
+
+    }
 
 }
